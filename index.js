@@ -5,9 +5,9 @@ const app = express()
 const cors =require('cors')
 
 app.use(cors())
-app.get('/', (req, res, next) => {
-    res.send("Hello world")
-})
+// // app.get('/', (req, res, next) => {
+//     res.send("Hello world")
+// })
 
 //GET all flavors
 app.get('/api/flavors', async (req,res,next) => {
@@ -29,7 +29,7 @@ app.get('/api/flavors', async (req,res,next) => {
 app.get('/api/flavors/:id' , async (req,res,next) => {
     try {
         console.log(req.params.id)
-
+                                          // id=$1 $1 means first element 
         const SQL = `
         SELECT * from flavors WHERE id=$1
         `
@@ -66,6 +66,7 @@ app.delete('/api/flavors/:id', async (req,res, next) => {
     }
 })
 
+
 //Error handler area  *************************************** 
 app.use((error,req,res,next) => {
     res.status(500)
@@ -79,7 +80,7 @@ app.use('*', (req,res,next) => {
 
 
 // Main SQL area  ************************************
-
+// run npm run start:dev to reset data to original form if everything has been deleted in browser or postman
 
 const start = async () => {
     await client.connect()
